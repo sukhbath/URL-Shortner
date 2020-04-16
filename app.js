@@ -1,19 +1,9 @@
 const express = require("express")
-const mongoose = require('mongoose')
 const controller = require('./Controller/URLcontroller')
+const DB = require('./DAO/Mongoose')
 const app = express()
 
-mongoose.connect('mongodb://localhost:27017/URL',{
-    useCreateIndex: true,
-    useNewUrlParser: true,
-    useFindAndModify: false,
-    useUnifiedTopology: true
-}).then(e=>{
-    console.log('connected')
-}).catch(e=>{
-    throw e
-})
-
+DB.connectDB();
 app.use(express.json())
 
 app.post('/',controller.createURL)
