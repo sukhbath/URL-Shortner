@@ -1,16 +1,15 @@
 {
-  "name": "URL-Shortner",
+  "name": "url-shortner",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "nodemon app.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sukhbath/URL-Shortner.git"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -18,7 +17,10 @@
   },
   "homepage": "https://github.com/sukhbath/URL-Shortner#readme",
   "dependencies": {
+    "express": "^4.17.1",
+    "jquery": "^3.5.0",
     "mongoose": "^5.9.9",
-    "node-url-shortener": "^1.0.1"
+    "nodemon": "^2.0.3",
+    "shortid": "^2.2.15"
   }
 }
