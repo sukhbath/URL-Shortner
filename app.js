@@ -21,6 +21,6 @@ app.get("/", function (reqest, response, next) {
 app.post("/short", UrlController.short);
 app.get("/go/:id", UrlController.go);
 
-app.listen(3000, function () {
+app.listen(process.env.PORT || 3000, function () {
   console.log("server is runnig");
 });
