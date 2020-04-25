@@ -1,16 +1,26 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const URLcontroller = require("./Controller/URLcontroller");
+const shortid = require("shortid");
+const ConnectDB = require("./util/MongoConnect");
+const UrlModel = require("./model/URLmodel");
+const UrlController = require("./controller/urlController");
 
 const app = express();
+ConnectDB();
 
+app.use(express.json());
+app.use(express.urlencoded());
 
-mongoose
-  .connect("mongodb://localhost:27017/tours")
-  .then((e) => console.log("connected DB"))
-  .then((e) => console.log("connection Failed."));
+app.use(express.static("./views"));
+app.set("view-engine", "ejs");
 
-app.post('/URL',URLcontroller.createURL)
-app.get('/URL/:id',URLcontroller.redirect)
+app.get("/", function (reqest, response, next) {
+  response.render(`index.ejs`, { title: "Welcome | URL Shortner" });
+});
 
-app.listen(4000);
+app.post("/short", UrlController.short);
+app.get("/go/:id", UrlController.go);
+
+app.listen(3000, function () {
+  console.log("server is runnig");
+});

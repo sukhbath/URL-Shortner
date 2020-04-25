@@ -1,8 +1,8 @@
 {
-  "name": "url-shortner",
+  "name": "URL-Shortner",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "start": "nodemon app.js"
   },
@@ -10,6 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/sukhbath/URL-Shortner.git"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -17,10 +18,11 @@
   },
   "homepage": "https://github.com/sukhbath/URL-Shortner#readme",
   "dependencies": {
+    "ejs": "^3.1.2",
     "express": "^4.17.1",
-    "jquery": "^3.5.0",
-    "mongoose": "^5.9.9",
+    "mongoose": "^5.9.10",
     "nodemon": "^2.0.3",
+    "pug": "^2.0.4",
     "shortid": "^2.2.15"
   }
 }

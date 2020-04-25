@@ -1,30 +1,27 @@
-const shortid = require("shortid")
-const URL_Model = require('../Models/URLmodel')
+const UrlModel = require("./../model/URLmodel");
+const shortid = require("shortid");
 
+exports.short = async function (reqest, response, next) {
+  var { url } = reqest.body;
+  var existedUrl = await UrlModel.findOne({ actualUrl: url });
+  if (existedUrl) {
+    return render(existedUrl.uid, response);
+  }
+  var uid = shortid.generate();
+  await UrlModel.create({ actualUrl: url, uid });
 
-exports.createURL=async (request, response, next) => {
-    const exactURL = request.body.url;
-    const id = shortid.generate();
-    const shortURL = id
-    await URL_Model.create({
-        exactURL,
-        shortURL
-    })
+  render(uid, response);
+};
 
-    response.send({
-        message: "success",
-        data: {
-            exactURL,
-            shortURL:`http://localhost:3000/${shortURL}`
-        }
-    })
+exports.go = async function (reqest, response, next) {
+  var uid = reqest.params.id;
+  var url = await UrlModel.findOne({ uid });
+  response.redirect(url.actualUrl);
+};
 
-}
-
-
-
-exports.redirect=async (request, response, next) => {
-    const id = request.params.id;
-    var me = await URL_Model.findOne({shortURL:id})
-    response.redirect(me.exactURL)
+function render(id, response) {
+  response.render("ShortenedURL.ejs", {
+    title: "Shortened URL",
+    shortenUrl: `http://localhost:3000/go/${id}`,
+  });
 }
