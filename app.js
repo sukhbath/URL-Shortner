@@ -15,7 +15,9 @@ app.use(express.static("./views"));
 app.set("view-engine", "ejs");
 
 app.get("/", function (reqest, response, next) {
-  response.render(`index.ejs`, { title: "Welcome | URL Shortner" });
+  response.render(`index.ejs`, {
+    title: "Welcome | URL Shortner"
+  });
 });
 
 app.post("/short", UrlController.short);
