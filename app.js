@@ -6,6 +6,7 @@ const UrlModel = require("./model/URLmodel");
 const UrlController = require("./controller/urlController");
 
 const app = express();
+app.use(compression());
 ConnectDB();
 
 app.use(express.json());
@@ -16,7 +17,7 @@ app.set("view-engine", "ejs");
 
 app.get("/", function (reqest, response, next) {
   response.render(`index.ejs`, {
-    title: "Welcome | URL Shortner"
+    title: "Welcome | URL Shortner",
   });
 });
 
