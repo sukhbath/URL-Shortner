@@ -25,5 +25,5 @@ app.post("/short", UrlController.short);
 app.get("/go/:id", UrlController.go);
 
 app.listen(process.env.PORT || 3000, function () {
-  console.log("server is runnig");
+  console.log("server is runnig on 3000");
 });
